@@ -11,8 +11,7 @@ def generate_auth_token(user):
     auth_token = jwt.encode(
         payload={
             "user_id": user.user_id,
-            "mobile_number": user.mobile_number,
-            "user_name": user.username,
+            "email": user.email,
             "token_expiry": int(time.time()) + int(env['TOKEN_EXPIRY_BY'])
         },
         key=secret,
