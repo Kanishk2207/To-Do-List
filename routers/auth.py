@@ -1,7 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from dependencies import AuthValidator
 from helpers import user_token_helper
 from internal.database.mysql import get_db
 from model.dto.auth_dto import User as UserDto
