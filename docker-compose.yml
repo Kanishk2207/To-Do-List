@@ -1,0 +1,34 @@
+version: "3.8"
+
+services:
+  my-sql:
+    image: mysql:8.0
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: "abcde"
+      MYSQL_DATABASE: wobot-ai
+      MYSQL_USER: dev-user
+      MYSQL_PASSWORD: "abc"
+    expose:
+      - "3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+  backend:
+    depends_on:
+      - my-sql
+    build:
+      dockerfile: Dockerfile
+      context: .
+    environment:
+      DATABASE_URL: "mysql://dev-user:abc@my-sql:3306/wobot-ai"
+    command: sh -c "uvicorn main:app --reload --port=8000 --host=0.0.0.0"
+    env_file:
+      - .env
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/app
+volumes:
+  mysql-data:
