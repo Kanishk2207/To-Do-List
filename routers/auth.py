@@ -11,6 +11,21 @@ router = APIRouter()
 
 @router.post('/register', tags = ['auth'])
 async def create_user(request: UserDto, mysql_session: AsyncSession = Depends(get_db)):
+    """
+    post /register
+    descption: resigter a user
+    
+    request:
+    {
+        "email": "string",
+        "password": "string"
+    }
+    
+    response:
+    {
+        "message": "string"
+    }
+    """
     try:
         auth_srv = auth_service.AuthService(mysql_session)
         
@@ -20,11 +35,25 @@ async def create_user(request: UserDto, mysql_session: AsyncSession = Depends(ge
             'message': "Registered successfully, please login"
         }
     except Exception as ex:
-        print(ex)
-        raise HTTPException(status_code=500, detail=f"Internal Server Error: {str(ex)}")
+        raise HTTPException(status_code=500, detail={"message": "Error: Failed to register"})
 
 @router.get('/login', tags=['auth'])
 async def get_user(request: UserDto, mysql_session: AsyncSession = Depends(get_db)):
+    """
+    get /login
+    descption: login a user
+    
+    request:
+    {
+        "email": "string",
+        "password": "string"
+    }
+    
+    response:
+    {
+        "message": "string"
+    }
+    """
     try:
         auth_srv = auth_service.AuthService(mysql_session)
         
@@ -37,5 +66,4 @@ async def get_user(request: UserDto, mysql_session: AsyncSession = Depends(get_d
             "token": token
         }
     except Exception as ex:
-        print(ex)
-        raise HTTPException(status_code=500, detail=f"Internal Server Error: {str(ex)}")
+        raise HTTPException(status_code=500, detail={"message": "Error: Failed to login"})
