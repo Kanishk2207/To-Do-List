@@ -18,4 +18,3 @@ class Task(RCDBBase):
     status: Mapped[status_enum] = mapped_column(Enum('completed','pending'))
     created_at: Mapped[int] = mapped_column()
     updated_at: Mapped[int] = mapped_column()
-    
