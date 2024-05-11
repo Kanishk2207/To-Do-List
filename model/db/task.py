@@ -1,6 +1,6 @@
 from typing import Literal
 
-from model.db.RCBase import TLDBBase
+from model.db.TLBase import TLDBBase
 
 from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy import String, ForeignKey, Enum
