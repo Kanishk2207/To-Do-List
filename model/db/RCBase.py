@@ -1,5 +1,5 @@
 from sqlalchemy.orm import DeclarativeBase
 
 
-class RCDBBase(DeclarativeBase):
+class TLDBBase(DeclarativeBase):
     pass

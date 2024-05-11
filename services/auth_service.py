@@ -8,10 +8,10 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from model.dto.auth_dto import User as UserDto
 from model.db.User import User
-from services.rc_db_Service import RCDBService
+from services.tl_db_Service import TLDBService
 from utils import uuid_generator, password_hasher, token_generator
 
-class AuthService(RCDBService):
+class AuthService(TLDBService):
     
     def __init__(self, session: AsyncSession):
         super().__init__(session)

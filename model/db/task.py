@@ -1,6 +1,6 @@
 from typing import Literal
 
-from model.db.RCBase import RCDBBase
+from model.db.RCBase import TLDBBase
 
 from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy import String, ForeignKey, Enum
@@ -8,7 +8,7 @@ from sqlalchemy import String, ForeignKey, Enum
 priority_enum = Literal['high','mid','low']
 status_enum = Literal['completed','pending']
 
-class Task(RCDBBase):
+class Task(TLDBBase):
     __tablename__ = "task"
     task_id: Mapped[str] = mapped_column(primary_key=True)
     user_id: Mapped[str] = mapped_column(ForeignKey("user.user_id"))

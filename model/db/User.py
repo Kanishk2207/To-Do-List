@@ -1,10 +1,10 @@
-from model.db.RCBase import RCDBBase
+from model.db.RCBase import TLDBBase
 
 from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy import String, ForeignKey
 
 
-class User(RCDBBase):
+class User(TLDBBase):
     __tablename__ = "user"
     user_id: Mapped[str] = mapped_column(primary_key=True)
     email: Mapped[str] = mapped_column(String(45))
